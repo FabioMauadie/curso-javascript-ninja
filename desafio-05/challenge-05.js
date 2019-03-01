@@ -29,8 +29,7 @@ function minhaFuncao2(array,indice){
 /*
 Declare uma variável que recebe um array com 5 valores, de tipos diferentes.
 */
-// ?
-var meuArray = ["fabio", true,false,"mauadie","5];
+//var meuaArray = ["fabio", true, false, "mauadie",5];
 /*
 Invoque a função criada acima, fazendo-a retornar todos os valores do último
 array criado.
