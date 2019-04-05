@@ -55,28 +55,77 @@ vai efetuar. Será uma string com os valores `+`, `-`, `*`, `/` ou `%`;
   - Se o operador não for válido, retornar a frase:
   "Operação inválida."
 */
-// ?
-
+function calculator(operator){
+return function(num1,num2){
+var resultado;
+ 
+switch(operator){
+ 
+    case '+':
+	resultado = num1 + num2;
+	break;
+ 
+	case '-':
+	resultado = num1 - num2;
+	break;
+ 
+    case '*':
+	resultado = num1 * num2;
+	break;
+ 
+	case '/':
+	resultado = num1 / num2;
+	break;
+ 
+	case '%':
+	resultado = num1 % num2;
+	break;
+	
+    default:
+	return 'OPERAÇÃO INVALIDA';
+}
+ 
+return 'RESULTADO DA OPERAÇÃO: ' + num1 + '' + operator + '' + num2 + '=' + resultado + '.';
+ 
+};
+ 
+}
+ 
 /*
 Declare uma variável chamada `sum`, que receberá a função acima, passando como
 parâmetro o operador de soma.
 */
 // ?
-
+var soma = calculator('+');
 /*
 Agora `sum` é uma função. Mostre no console a soma de dois números, usando ela.
 */
 // ?
-
+soma(5,5)
+"RESULTADO DA OPERAÇÃO: 5+5=10."
 /*
 Agora, declare algumas variáveis com os nomes `subtraction`, `multiplication`,
 `division` e `mod`, e atribua a elas a função `calculator`, passando o operador
 correto por parâmetro para cada uma delas.
 */
 // ?
-
+var sub = calculator('-');
+var multiplicacao = calculator('*');
+var divisao = calculator('/');
+var modulo = calculator('%');
 /*
 Faça uma operação com cada uma das funções criadas acima, mostrando o resultado
 no console.
 */
 // ?
+console.log(divisao(100,5));
+VM1057:1 RESULTADO DA OPERAÇÃO: 100/5=20.
+
+console.log(modulo(100,5));
+VM1109:1 RESULTADO DA OPERAÇÃO: 100%5=0.
+
+console.log(multiplicacao(100,5));
+VM1160:1 RESULTADO DA OPERAÇÃO: 100*5=500.
+
+console.log(sub(100,5));
+VM1221:1 RESULTADO DA OPERAÇÃO: 100-5=95.
