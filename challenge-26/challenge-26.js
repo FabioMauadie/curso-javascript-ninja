@@ -1,3 +1,5 @@
+(function(){
+'use strict';
 /*
 O desafio dessa semana é criar uma mini library (biblioteca) para
 reutilizarmos nossos códigos quando fizermos manipulação de DOM!
@@ -19,13 +21,53 @@ selecionados.
 Dica: olhe os erros que acontecem no console, e vá resolvendo um a um.
 Só passe para o próximo problema quando tiver resolvido o anterior :)
 */
-// ?
+
+
+//funcao construtora
+function DOM(elements){
+    this.element = this.getDOMElements(elements); 
+}
+//esse metodo vai selicionar todos elementos da tela
+DOM.prototype.getDOMElements = function getDOMElements(elements){
+    return document.querySelectorAll(elements);
+
+};
+
+//criando o metodo on na lib DOM
+//o metodo vai receber um tipo de evento, que ao ser acionada vai chamar uma funcao
+//com forEach é possivel pecorrer todos os elementos e add um evento a eles no caso o <a>
+DOM.prototype.on = function on(tipoEvento,callback){
+Array.prototype.forEach.call(this.element, function(element){
+    element.addEventListener(tipoEvento,callback,false);
+});
+
+};
+//a partir daqui o metodo off passa a existe na lib DOM
+//com a funcao handleClick passada a baixo quando clicarmos no link ele vai dar acao apenas 1 vez e vai remover a acao do on
+DOM.prototype.off = function off(tipoEvento,callback){
+    Array.prototype.forEach.call(this.element, function(element){
+        element.removeEventListener(tipoEvento,callback,false);
+    });
+
+};
+//a partir daqui o metodo get passa a existe na lib DOM
+DOM.prototype.get = function get(){
+    return this.element;
+
+};
+
 
 var $a = new DOM('[data-js="link"]');
-$a.on('click', function(e) {
+$a.on('click', function handleClick(e) {
   e.preventDefault();
   console.log('clicou');
+  $a.off('click', handleClick);
 });
 
 console.log('Elementos selecionados:', $a.get());
 console.log('$a é filho de body?', $a.get()[0].parentNode === document.body);
+
+
+})();
+
+
